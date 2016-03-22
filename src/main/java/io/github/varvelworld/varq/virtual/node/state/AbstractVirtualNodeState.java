@@ -1,5 +1,7 @@
 package io.github.varvelworld.varq.virtual.node.state;
 
+import java.util.function.Consumer;
+
 /**
  * Created by varvelworld on 2016/3/11.
  */
@@ -27,5 +29,10 @@ abstract public class AbstractVirtualNodeState implements VirtualNodeState {
     @Override
     public int hashCode() {
         return identity;
+    }
+
+    protected void doEvent(Consumer<VirtualNodeState> newStateHolder
+            , VirtualNodeStateRootAction action, VirtualNodeState newState) {
+        action.doAction(this, newState, () -> newStateHolder.accept(newState));
     }
 }

@@ -1,5 +1,7 @@
 package io.github.varvelworld.varq.virtual.node.state;
 
+import java.util.function.Consumer;
+
 /**
  * Created by varvelworld on 2016/3/11.
  */
@@ -9,22 +11,22 @@ public class HalfJoinVirtualNodeState extends AbstractVirtualNodeState {
     }
 
     @Override
-    public VirtualNodeState prepareJoin() {
-        return this;
+    public void prepareJoin(Consumer<VirtualNodeState> newStateHolder, VirtualNodeStateRootAction action) {
+        doEvent(newStateHolder, action, this);
     }
 
     @Override
-    public VirtualNodeState prepareDetach() {
-        return this;
+    public void prepareDetach(Consumer<VirtualNodeState> newStateHolder, VirtualNodeStateRootAction action) {
+        doEvent(newStateHolder, action, this);
     }
 
     @Override
-    public VirtualNodeState join() {
-        return VirtualNodeStates.JOINED;
+    public void join(Consumer<VirtualNodeState> newStateHolder, VirtualNodeStateRootAction action) {
+        doEvent(newStateHolder, action, VirtualNodeStates.JOINED);
     }
 
     @Override
-    public VirtualNodeState detach() {
-        return this;
+    public void detach(Consumer<VirtualNodeState> newStateHolder, VirtualNodeStateRootAction action) {
+        doEvent(newStateHolder, action, this);
     }
 }

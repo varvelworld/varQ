@@ -9,8 +9,8 @@ final public class VirtualNodeStates {
     static final int JOINED_IDENTITY = 2;
     static final int HALF_DETACH_IDENTITY = 3;
 
-    public final static VirtualNodeState DETACHED = new DetachedVirtualNodeState();
-    public final static VirtualNodeState HALF_JOIN = new HalfJoinVirtualNodeState();
-    public final static VirtualNodeState JOINED = new JoinedVirtualNodeState();
-    public final static VirtualNodeState HALF_DETACH = new HalfDetachVirtualNodeState();
+    public final static DetachedVirtualNodeState DETACHED = new DetachedVirtualNodeState();
+    public final static HalfJoinVirtualNodeState HALF_JOIN = new HalfJoinVirtualNodeState();
+    public final static JoinedVirtualNodeState JOINED = new JoinedVirtualNodeState();
+    public final static HalfDetachVirtualNodeState HALF_DETACH = new HalfDetachVirtualNodeState();
 }

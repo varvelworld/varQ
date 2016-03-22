@@ -14,13 +14,11 @@ public class VirtualNode {
     private VirtualNodeState state = VirtualNodeStates.DETACHED;
 
     public void prepareJoin() {
-        state = state.prepareJoin();
-        // TODO
+        state.prepareJoin(newState -> state = newState);
     }
 
     public void prepareDetach() {
-        state = state.prepareDetach();
-        // TODO
+        state.prepareDetach(newState -> state = newState);
     }
 
 
