@@ -7,10 +7,11 @@ import java.util.function.UnaryOperator;
  */
 public class VirtualNodeStateContext implements VirtualNodeStateEventTrigger {
 
-    private VirtualNodeState state = VirtualNodeStates.DETACHED;
+    private VirtualNodeState state;
     private VirtualNodeStateListener listener;
 
-    public VirtualNodeStateContext(VirtualNodeStateListener listener) {
+    public VirtualNodeStateContext(VirtualNodeState state, VirtualNodeStateListener listener) {
+        this.state = state;
         this.listener = listener;
     }
 
@@ -31,19 +32,19 @@ public class VirtualNodeStateContext implements VirtualNodeStateEventTrigger {
         return this.state;
     }
 
-    public VirtualNodeState prepareJoin() {
+    synchronized public VirtualNodeState prepareJoin() {
         return doEvent(VirtualNodeStateEventTrigger::prepareJoin);
     }
 
-    public VirtualNodeState prepareDetach() {
+    synchronized public VirtualNodeState prepareDetach() {
         return doEvent(VirtualNodeStateEventTrigger::prepareDetach);
     }
 
-    public VirtualNodeState join() {
+    synchronized public VirtualNodeState join() {
         return doEvent(VirtualNodeStateEventTrigger::join);
     }
 
-    public VirtualNodeState detach() {
+    synchronized public VirtualNodeState detach() {
         return doEvent(VirtualNodeStateEventTrigger::detach);
     }
 }
